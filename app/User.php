@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'last_name', 'last_name2', 'curp', 'city', 'state', 'address', 'phone', 'level', 'boss_id', 'email', 'password', 'status',
     ];
 
     /**
@@ -34,6 +34,46 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        // 'email_verified_at' => 'datetime',
     ];
+
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = ucwords($value);
+    }
+
+    public function setLastNameAttribute($value)
+    {
+        $this->attributes['last_name'] = ucwords($value);
+    }
+
+    public function setLastName2Attribute($value)
+    {
+        $this->attributes['last_name2'] = ucwords($value);
+    }
+
+    public function setCurpAttribute($value)
+    {
+        $this->attributes['curp'] = strtoupper($value);
+    }
+
+    public function setCityAttribute($value)
+    {
+        $this->attributes['city'] = strtolower($value);
+    }
+
+    public function setStateAttribute($value)
+    {
+        $this->attributes['state'] = strtolower($value);
+    }
+
+    public function setAddressAttribute($value)
+    {
+        $this->attributes['address'] = strtolower($value);
+    }
+
+    public function setEmailAttribute($value)
+    {
+        $this->attributes['email'] = strtolower($value);
+    }
 }
