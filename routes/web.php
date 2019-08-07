@@ -18,3 +18,15 @@
 Auth::routes(['register' => false]);
 
 Route::get('/', 'HomeController@index');
+
+Route::group(['middleware' => 'auth'], function(){
+
+	Route::get('verify-email', 'UserController@verifyEmail');
+
+	Route::resource('usuarios', 'UserController');
+			// ->names([
+			// 	'create' => 'usuarios.nuevo',
+			// 	'create' => 'usuarios.nuevo',
+			// ]);
+
+});

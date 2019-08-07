@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
+    "name": "laravel/vive_bellissima",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "Multilevel manage dashboard",
     "keywords": [
         "framework",
         "laravel"
@@ -38,6 +38,9 @@
         "classmap": [
             "database/seeds",
             "database/factories"
+        ],
+        "files": [
+            "App/helpers.php"
         ]
     },
     "autoload-dev": {

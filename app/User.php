@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -16,8 +17,15 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'last_name', 'last_name2', 'curp', 'city', 'state', 'address', 'phone', 'level', 'boss_id', 'email', 'password', 'status',
+        'name', 'last_name', 'last_name2', 'curp', 'city', 'state', 'address', 'phone', 'level', 'team_leader', 'email', 'password', 'status',
     ];
+
+    /**
+     * The custom attributes used for accessors.
+     *
+     * @var array
+     */
+    protected $appends = ['full_name', 'level_name'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -75,5 +83,26 @@ class User extends Authenticatable
     public function setEmailAttribute($value)
     {
         $this->attributes['email'] = strtolower($value);
+    }
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = Hash::make($value);
+    }
+
+    public function getFullNameAttribute()
+    {
+        return "{$this->name} {$this->last_name} {$this->last_name2}";
+    }
+
+    public function getLevelNameAttribute()
+    {
+        switch( $this->level ) {
+            case 1: return 'Director';
+            case 2: return 'Promotor';
+            case 3: return 'Vendedor';
+            case 4: return 'Cliente';
+            default: return 'nivel no asignado';
+        }
     }
 }

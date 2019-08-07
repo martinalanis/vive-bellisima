@@ -24,8 +24,8 @@ class CreateUsersTable extends Migration
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->tinyInteger('level')->default(1);
-            $table->integer('boss_id')->nullable()->unsigned();
-            $table->foreign('boss_id')->references('id')->on('users')->onDelete('set null')->onUpdate('cascade');
+            $table->integer('team_leader')->nullable()->unsigned();
+            $table->foreign('team_leader')->references('id')->on('users')->onDelete('set null')->onUpdate('cascade');
             $table->string('email')->unique();
             $table->string('password');
             $table->tinyInteger('status')->default(1);
