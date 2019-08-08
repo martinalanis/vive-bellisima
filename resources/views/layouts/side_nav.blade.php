@@ -15,19 +15,19 @@
                     <p>Escritorio</p>
                 </a>
             </li>
-            <li class="nav-item {{ active('usuarios') }}">
+            <li class="nav-item {{ strpos(request()->path(), 'usuarios') !== false ? 'active' :'' }}">
                 <a class="nav-link" href="{{ route('usuarios.index') }}">
                     <i class="material-icons text-info">people</i>
                     <p>Usuarios</p>
                 </a>
             </li>
-            <li class="nav-item {{ active('almacen') }}">
+            <li class="nav-item {{ strpos(request()->path(), 'almacen') !== false ? 'active' :'' }}">
                 <a class="nav-link" href="./almacen.html">
                     <i class="material-icons text-info">store</i>
                     <p>Almacen</p>
                 </a>
             </li>
-            <li class="nav-item {{ active('reportes') }}">
+            <li class="nav-item {{ strpos(request()->path(), 'reportes') !== false ? 'active' :'' }}">
                 <a class="nav-link" href="./reportes.html">
                     <i class="material-icons text-info">playlist_add_check</i>
                     <p>Reportes</p>
