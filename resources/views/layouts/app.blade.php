@@ -71,7 +71,10 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                                     <a class="dropdown-item" href="#">Perfil</a>
-                                    <a class="dropdown-item" href="#">Salir</a>
+                                    <a class="dropdown-item" href="{{ url('/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Salir</a>
+                                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                      @csrf
+                                    </form>
                                 </div>
                             </li>
                         </ul>
