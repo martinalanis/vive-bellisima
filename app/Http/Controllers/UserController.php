@@ -77,7 +77,8 @@ class UserController extends Controller
      */
     public function edit(User $usuario)
     {
-        //
+        $usuarios = User::orderBy('name')->get();
+        return view('users.edit', compact('usuario', 'usuarios'));
     }
 
     /**
@@ -89,7 +90,17 @@ class UserController extends Controller
      */
     public function update(Request $request, User $usuario)
     {
-        //
+        $usuario->fill($request->all());
+
+        if( $usuario->save() ){
+            return response()->json([
+                    'message'   => 'Cambios guardados',
+                ], 200);
+        }
+
+        return response()->json([
+                    'message'   => 'No se pudo guardar los cambios',
+                ], 500);
     }
 
     /**
@@ -105,6 +116,11 @@ class UserController extends Controller
 
     public function verifyEmail(Request $request)
     {
+        if($request->has('update')){
+            if(User::where('email', $request->email)->exists()){
+                return response()->json(User::where('email', $request->email)->first()->id === (int)$request->id);
+            }
+        }
         return response()->json(User::where('email', $request->email)->doesntExist());
     }
 }

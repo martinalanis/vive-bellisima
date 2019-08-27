@@ -18824,14 +18824,15 @@ Copyright (c) 2015 Daniel Eden
 
 
 .logoside {
-    width:70%;
-margin-left: 15%;
+  width:70%;
+  margin-left: 15%;
 }
-
 .loginform {
-padding: 10%;
+  padding: 10%;
 }
-
 .btnlogin{
-    margin-top: 20px;
+  margin-top: 20px;
+}
+.font500 {
+  font-weight: 500;
 }

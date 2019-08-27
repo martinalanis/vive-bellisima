@@ -65,7 +65,7 @@
 										Nivel
 									</td>
 									<td>
-										{{ $usuario->level }}
+										{{ $usuario->getLevelNameAttribute() }}
 									</td>
 								</tr>
 								<tr>
@@ -80,8 +80,10 @@
 						</table>
 					</div>
 					<div class="row">
-						<div class="col-md-2">
-							<a href="javascript:history.back();"><button class="btn btn-info"><i class="material-icons">arrow_back</i> Atrás
+						<div class="col s12">
+							<a href="javascript:history.back();"><button class="btn  btn-info"><i class="material-icons">arrow_back</i> Atrás
+							</button></a>
+							<a href="{{ route('usuarios.edit', $usuario) }}"><button class="btn  btn-warning"><i class="material-icons">create</i> Editar
 							</button></a>
 						</div>
 					</div>

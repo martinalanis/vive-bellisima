@@ -45,6 +45,9 @@ class User extends Authenticatable
         // 'email_verified_at' => 'datetime',
     ];
 
+    protected $levels = ['1' => 'Director', '2' => 'Promotor', '3' => 'Vendedor', '4' => 'Cliente'];
+
+
     public function setNameAttribute($value)
     {
         $this->attributes['name'] = ucwords($value);
@@ -97,12 +100,15 @@ class User extends Authenticatable
 
     public function getLevelNameAttribute()
     {
-        switch( $this->level ) {
-            case 1: return 'Director';
-            case 2: return 'Promotor';
-            case 3: return 'Vendedor';
-            case 4: return 'Cliente';
-            default: return 'nivel no asignado';
-        }
+        return $this->levels[ $this->level - 1 ];
+        // switch( $this->level ) {
+        //     case 1: return 'Director';
+        //     case 2: return 'Promotor';
+        //     case 3: return 'Vendedor';
     }
-}
+
+    public function levels()
+    {
+        return $this->levels;
+    }                        
+}                                                       
